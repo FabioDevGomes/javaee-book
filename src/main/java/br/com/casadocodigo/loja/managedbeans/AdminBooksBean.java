@@ -1,27 +1,69 @@
 package br.com.casadocodigo.loja.managedbeans;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
+import br.com.casadocodigo.loja.daos.AuthorDao;
 import br.com.casadocodigo.loja.daos.BookDao;
+import br.com.casadocodigo.loja.models.Author;
 import br.com.casadocodigo.loja.models.Book;
 
 @Model
 public class AdminBooksBean {
 	
 	private Book product = new Book();
-	@Inject
+	private List<Author> autors = new ArrayList<>();
+	private List<Integer> selectAuthorsIds = new ArrayList<>();
 	private BookDao bookDao;
+	private AuthorDao authorDao;
+	
+	public AdminBooksBean(){}
+	
+	@Inject
+	public AdminBooksBean(BookDao bookDao, AuthorDao authorDao){
+		this.bookDao = bookDao;
+		this.authorDao = authorDao;
+	}
+	
+	@PostConstruct
+	public void loadObjects(){
+		this.autors = authorDao.list();
+	}
 
+	@Transactional
 	public void save(){
-		System.out.println("-- save() --" + product);
+		populateBookAuthor();
 		bookDao.save(product);
+	}
+	
+	private void populateBookAuthor(){
+		selectAuthorsIds.stream().map((id) -> {
+			return new Author(id);
+		}).forEach(product :: add);
 	}
 
 	public Book getProduct() {
 		return product;
 	}
-	
-	
-	
+
+	public List<Integer> getSelectAuthorsIds() {
+		return selectAuthorsIds;
+	}
+
+	public void setSelectAuthorsIds(List<Integer> selectAuthorsIds) {
+		this.selectAuthorsIds = selectAuthorsIds;
+	}
+
+	public List<Author> getAutors() {
+		return autors;
+	}
+
+	public void setAutors(List<Author> autors) {
+		this.autors = autors;
+	}
 }
