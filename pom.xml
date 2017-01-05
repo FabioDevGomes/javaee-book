@@ -4,6 +4,10 @@
 	<groupId>casadocodigo</groupId>
 	<artifactId>casadocodigo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -13,7 +17,7 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>javax.enterprise</groupId>
 				<artifactId>cdi-api</artifactId>
@@ -38,14 +42,14 @@
 			<artifactId>javax.faces-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- cdi -->
 		<dependency>
 			<groupId>javax.enterprise</groupId>
 			<artifactId>cdi-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
+
 	</dependencies>
 
 </project>
