@@ -39,6 +39,13 @@ public class AdminBooksBean {
 	public void save(){
 		populateBookAuthor();
 		bookDao.save(product);
+		clearObject();
+	}
+	
+	private void clearObject(){
+		product = new Book();
+		selectAuthorsIds.clear();
+		
 	}
 	
 	private void populateBookAuthor(){

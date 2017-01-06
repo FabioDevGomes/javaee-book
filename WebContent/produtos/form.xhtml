@@ -24,11 +24,10 @@
 		</div>
 		<div>
 			<h:outputLabel>Autores</h:outputLabel>
-			<h:selectManyListbox value="#{adminBooksBean.selectAuthorsIds}">
+			<h:selectManyListbox value="#{adminBooksBean.selectAuthorsIds}" converter="javax.faces.Integer">
 				<f:selectItems value="#{adminBooksBean.autors}" var="author" itemLabel="#{author.name}" 
 				itemValue="#{author.id}"/>
 			</h:selectManyListbox>
-			
 		</div>
 		<h:commandButton value="Gravar" action="#{adminBooksBean.save}" />
 	</h:form>

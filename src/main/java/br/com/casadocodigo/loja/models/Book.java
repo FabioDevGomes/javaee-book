@@ -1,6 +1,7 @@
 package br.com.casadocodigo.loja.models;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -20,7 +21,7 @@ public class Book {
 	private int numberOfPages;
 	private BigDecimal price;
 	@ManyToMany
-	private List<Author> authors;
+	private List<Author> authors = new ArrayList<Author>();
 	
 	public void add(Author author) {
 		getAuthors().add(author);
