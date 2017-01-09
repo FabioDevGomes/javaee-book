@@ -5,11 +5,14 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import br.com.casadocodigo.loja.daos.AuthorDao;
 import br.com.casadocodigo.loja.daos.BookDao;
+import br.com.casadocodigo.loja.infra.MessagesHelper;
 import br.com.casadocodigo.loja.models.Author;
 import br.com.casadocodigo.loja.models.Book;
 
@@ -21,6 +24,8 @@ public class AdminBooksBean {
 	private List<Integer> selectAuthorsIds = new ArrayList<>();
 	private BookDao bookDao;
 	private AuthorDao authorDao;
+	@Inject
+	private MessagesHelper messagesHelper;
 	
 	public AdminBooksBean(){}
 	
@@ -36,16 +41,11 @@ public class AdminBooksBean {
 	}
 
 	@Transactional
-	public void save(){
+	public String save(){
 		populateBookAuthor();
 		bookDao.save(product);
-		clearObject();
-	}
-	
-	private void clearObject(){
-		product = new Book();
-		selectAuthorsIds.clear();
-		
+		messagesHelper.addFlash(new FacesMessage("Livro adicionado com sucesso!"));
+		return "/livros/lista?faces-redirect=true";
 	}
 	
 	private void populateBookAuthor(){
