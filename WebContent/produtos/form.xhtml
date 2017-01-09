@@ -8,29 +8,24 @@
 	<h:form prependId="false">
 		<div>
 			<h:outputLabel>Titulo</h:outputLabel>
-			<h:inputText id="titulo" value="#{adminBooksBean.product.title}" required="true"/>
+			<h:inputText id="titulo" value="#{adminBooksBean.product.title}"/>
 			<h:message for="titulo"/>
 		</div>
 		<div>
 			<h:outputLabel>Descrição</h:outputLabel>
-			<h:inputTextarea id="descicao" cols="20" rows="10" value="#{adminBooksBean.product.description}"
-				required="true"/>
+			<h:inputTextarea id="descicao" cols="20" rows="10" value="#{adminBooksBean.product.description}"/>
 		</div>
 		<div>
 			<h:outputLabel>Número de páginas</h:outputLabel>
-			<h:inputText id="paginas" value="#{adminBooksBean.product.numberOfPages}" required="true">
-				<f:validateLongRange minimum="80"/>
-			</h:inputText>
+			<h:inputText id="paginas" value="#{adminBooksBean.product.numberOfPages}"/>
 		</div>
 		<div>
 			<h:outputLabel>Preço</h:outputLabel>
-			<h:inputText id="preco" value="#{adminBooksBean.product.price}" required="true" >
-				<f:validateDoubleRange minimum="10" maximum="100"/>
-			</h:inputText>
+			<h:inputText id="preco" value="#{adminBooksBean.product.price}" />
 		</div>
 		<div>
 			<h:outputLabel>Autores</h:outputLabel>
-			<h:selectManyListbox id="autores" value="#{adminBooksBean.selectAuthorsIds}" converter="javax.faces.Integer" required="true">
+			<h:selectManyListbox id="autores" value="#{adminBooksBean.selectAuthorsIds}" converter="javax.faces.Integer">
 				<f:selectItems value="#{adminBooksBean.autors}" var="author" itemLabel="#{author.name}" 
 				itemValue="#{author.id}"/>
 			</h:selectManyListbox>
