@@ -30,6 +30,12 @@
 				itemValue="#{author.id}"/>
 			</h:selectManyListbox>
 		</div>
+		<div>
+			<h:outputLabel value="Data de lançamento" />
+			<h:inputText value="#{adminBooksBean.product.releaseDate}" pt:type="date">
+				<f:convertDateTime pattern="yyyy-MM-dd"/>
+			</h:inputText>
+		</div>
 		<h:commandButton value="Gravar" action="#{adminBooksBean.save}" />
 	</h:form>
 </h:body>
