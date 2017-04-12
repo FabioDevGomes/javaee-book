@@ -6,7 +6,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
@@ -42,7 +41,7 @@ public class AdminBooksBean {
 
 	@Transactional
 	public String save(){
-		populateBookAuthor();
+//		populateBookAuthor();
 		bookDao.save(product);
 		messagesHelper.addFlash(new FacesMessage("Livro adicionado com sucesso!"));
 		return "/livros/lista?faces-redirect=true";
