@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
+import javax.servlet.http.Part;
 import javax.transaction.Transactional;
 
 import br.com.casadocodigo.loja.daos.AuthorDao;
@@ -25,6 +26,7 @@ public class AdminBooksBean {
 	private AuthorDao authorDao;
 	@Inject
 	private MessagesHelper messagesHelper;
+	private Part sumary;
 	
 	public AdminBooksBean(){}
 	
@@ -41,18 +43,11 @@ public class AdminBooksBean {
 
 	@Transactional
 	public String save(){
-//		populateBookAuthor();
 		bookDao.save(product);
 		messagesHelper.addFlash(new FacesMessage("Livro adicionado com sucesso!"));
 		return "/livros/lista?faces-redirect=true";
 	}
 	
-	private void populateBookAuthor(){
-		selectAuthorsIds.stream().map((id) -> {
-			return new Author(id);
-		}).forEach(product :: add);
-	}
-
 	public Book getProduct() {
 		return product;
 	}
