@@ -43,9 +43,34 @@ public class AdminBooksBean {
 
 	@Transactional
 	public String save(){
-		bookDao.save(product);
+		System.out.println("==== "+ extractFileName(sumary.getHeader("content-disposition")));
+//		bookDao.save(product);
 		messagesHelper.addFlash(new FacesMessage("Livro adicionado com sucesso!"));
 		return "/livros/lista?faces-redirect=true";
+	}
+	
+	private String extractFileName(String contentDisposition){
+		if(contentDisposition == null){
+			return null;
+		}
+		String fileNameKey = "filename=";
+		int startIndex = contentDisposition.indexOf(fileNameKey) + fileNameKey.length();
+		if(startIndex == -1){
+			return null;
+		}
+		String fileName = contentDisposition.substring(startIndex, contentDisposition.length());
+		if(fileName.startsWith("\"")){
+			int endIndex = fileName.indexOf("\"", 1);
+			if(endIndex != -1){
+				return fileName.substring(1, endIndex);
+			}
+		}else{
+			int endIndex = fileName.indexOf(";");
+			if(endIndex != -1){
+				return fileName.substring(0, endIndex);
+			}
+		}
+		return fileName;
 	}
 	
 	public Book getProduct() {
@@ -66,5 +91,13 @@ public class AdminBooksBean {
 
 	public void setAutors(List<Author> autors) {
 		this.autors = autors;
+	}
+
+	public Part getSumary() {
+		return sumary;
+	}
+
+	public void setSumary(Part sumary) {
+		this.sumary = sumary;
 	}
 }
