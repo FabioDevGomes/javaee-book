@@ -12,6 +12,7 @@ import javax.transaction.Transactional;
 
 import br.com.casadocodigo.loja.daos.AuthorDao;
 import br.com.casadocodigo.loja.daos.BookDao;
+import br.com.casadocodigo.loja.infra.FileSaver;
 import br.com.casadocodigo.loja.infra.MessagesHelper;
 import br.com.casadocodigo.loja.models.Author;
 import br.com.casadocodigo.loja.models.Book;
@@ -26,7 +27,9 @@ public class AdminBooksBean {
 	private AuthorDao authorDao;
 	@Inject
 	private MessagesHelper messagesHelper;
-	private Part sumary;
+	@Inject
+	private FileSaver fileSaver;
+	private Part summary;
 	
 	public AdminBooksBean(){}
 	
@@ -43,34 +46,10 @@ public class AdminBooksBean {
 
 	@Transactional
 	public String save(){
-		System.out.println("==== "+ extractFileName(sumary.getHeader("content-disposition")));
+		fileSaver.writer("summaries", summary);
 //		bookDao.save(product);
 		messagesHelper.addFlash(new FacesMessage("Livro adicionado com sucesso!"));
 		return "/livros/lista?faces-redirect=true";
-	}
-	
-	private String extractFileName(String contentDisposition){
-		if(contentDisposition == null){
-			return null;
-		}
-		String fileNameKey = "filename=";
-		int startIndex = contentDisposition.indexOf(fileNameKey) + fileNameKey.length();
-		if(startIndex == -1){
-			return null;
-		}
-		String fileName = contentDisposition.substring(startIndex, contentDisposition.length());
-		if(fileName.startsWith("\"")){
-			int endIndex = fileName.indexOf("\"", 1);
-			if(endIndex != -1){
-				return fileName.substring(1, endIndex);
-			}
-		}else{
-			int endIndex = fileName.indexOf(";");
-			if(endIndex != -1){
-				return fileName.substring(0, endIndex);
-			}
-		}
-		return fileName;
 	}
 	
 	public Book getProduct() {
@@ -93,11 +72,11 @@ public class AdminBooksBean {
 		this.autors = autors;
 	}
 
-	public Part getSumary() {
-		return sumary;
+	public Part getSummary() {
+		return summary;
 	}
 
-	public void setSumary(Part sumary) {
-		this.sumary = sumary;
+	public void setSummary(Part summary) {
+		this.summary = summary;
 	}
 }
