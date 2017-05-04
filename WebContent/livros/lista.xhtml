@@ -34,7 +34,15 @@
 			<f:facet name="header">
 				Data de lançamento
 			</f:facet>
-			#{book.releaseDate}
+			#{book.releaseDate.time}
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				Anexo
+			</f:facet>
+			<h:outputLink value="#{request.contextPath}/#{book.summaryPath}">
+				#{book.summaryPath}
+			</h:outputLink>
 		</h:column>
 		<h:column>
 			<f:facet name="header">

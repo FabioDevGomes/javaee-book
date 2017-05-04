@@ -46,8 +46,9 @@ public class AdminBooksBean {
 
 	@Transactional
 	public String save(){
-		fileSaver.writer("summaries", summary);
-//		bookDao.save(product);
+		String summaryPath = fileSaver.writer("summaries", summary);
+		product.setSummaryPath(summaryPath);
+		bookDao.save(product);
 		messagesHelper.addFlash(new FacesMessage("Livro adicionado com sucesso!"));
 		return "/livros/lista?faces-redirect=true";
 	}

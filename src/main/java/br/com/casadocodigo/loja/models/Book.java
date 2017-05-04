@@ -50,6 +50,9 @@ public class Book {
 	@Future
 	private Calendar releaseDate;
 	
+	
+	private String summaryPath;
+	
 	public void add(Author author) {
 		getAuthors().add(author);
 	}
@@ -100,6 +103,13 @@ public class Book {
 	public void setReleaseDate(Calendar releaseDate) {
 		this.releaseDate = releaseDate;
 	}
-	
+
+	public String getSummaryPath() {
+		return summaryPath;
+	}
+
+	public void setSummaryPath(String summaryPath) {
+		this.summaryPath = summaryPath;
+	}
 	
 }
