@@ -24,7 +24,7 @@ public class FileSaver {
 			s3.putObject("casadocodigo", fileName, multpartFile.getInputStream(),
 					new ObjectMetadata());
 
-			return "https://s3.amazonaws.com/casadocodigo/"+ fileName +"?noAuth=true";
+			return "http://localhost:9444/s3/casadocodigo/"+ fileName +"?noAuth=true";
 			// multpartFile.write(path);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
