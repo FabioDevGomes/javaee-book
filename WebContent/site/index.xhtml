@@ -1,33 +1,45 @@
 
 <html xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:o="http://omnifaces.org/ui"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <h:head></h:head>
-<h:body>
+<h:body class="index">
 
 	<h:outputStylesheet library="css" name="guia-do-programador-style.css"  />
 	<h:outputStylesheet library="css" name="book-collection.css"  />
 	<h:outputStylesheet library="css" name="style.css"  />
+	<h:outputStylesheet library="css" name="layout-colors.css"  />
+	<h:outputStylesheet library="css" name="responsive-style.css"  />
 	<h:messages />
 	<h:form prependId="false">
-		<ui:repeat var="book" value="#{homeBean.lastReleases()}">
-			<li>
-				<a href="teste/alterar" /> 
-				<img width="170" height="240" src="#{book.summaryPath}"
-					alt="#{book.title}" title="#{book.title}" />
-				<h2>#{book.title}</h2> 
-				<small>Lançamento!</small>
-			</li>
-		</ui:repeat>
-		<ui:repeat var="book" value="#{homeBean.olderBooks()}">
-			<li>
-				<a href="teste/alterar" class="block clearfix"/>
-				<h2 class="product-title">#{book.title}</h2> 
-				<img width="143" height="202" src="#{book.summaryPath}" alt="#{book.title}"
-					title="#{book.title}" /> 
-				<small class="buy-button">Compre!</small>
-			</li>
-		</ui:repeat>
+		<section id="index-section" class="container middle">
+			<ui:repeat var="book" value="#{homeBean.lastReleases()}">
+				<li>
+					<a href="teste/alterar"> 
+						<img width="170" height="240" src="#{book.summaryPath}"
+							alt="#{book.title}" title="#{book.title}" />
+						<h2>#{book.title}</h2> 
+						<small>Lançamento!</small>
+					</a>
+				</li>
+			</ui:repeat>
+			<h1 class="cdc-call">Últimos dias com os preços promocionais. Aproveite!</h1>
+			<o:cache scope="application">
+				<ul class="clearfix book-collection">
+					<ui:repeat var="book" value="#{homeBean.olderBooks()}">
+						<li class="col-left">
+							<a href="teste/alterar" class="block clearfix">
+								<h2 class="product-title">#{book.title}</h2> 
+								<img width="143" height="202" src="#{book.summaryPath}" alt="#{book.title}"
+									title="#{book.title}" /> 
+								<small class="buy-button">Compre!</small>
+							</a>
+						</li>
+					</ui:repeat>
+				</ul>
+			</o:cache>
+		</section>
 	</h:form>
 </h:body>
 </html>

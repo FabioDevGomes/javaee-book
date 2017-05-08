@@ -1,0 +1,96 @@
+
+<html xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:o="http://omnifaces.org/ui" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<h:head></h:head>
+<h:body class="index">
+	<h:outputStylesheet library="css" name="guia-do-programador-style.css" />
+	<h:outputStylesheet library="css" name="book-collection.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="layout-colors.css" />
+	<h:outputStylesheet library="css" name="responsive-style.css" />
+	<h:messages />
+	<h:form prependId="false">
+		<section id="index-section" class="container middle">
+			<article id="livro-css-eficiente">
+				<header id="product-highlight" class="clearfix">
+					<div id="product-overview" class="container">
+						<img width="280px" height="395px" src="#{productDetailBean.book.coverPath}"
+							class="product-featured-image"
+							alt="CSS Eficiente: Técnicas e ferramentas que fazem a diferença nos seus estilos" />
+						<h1 class="product-title">#{productDetailBean.book.title}</h1>
+						<p class="product-author">
+							<span class="product-author-link"> 
+								<ui:repeat var="author"	value="#{productDetailBean.book.authors}">
+				            	#{author.name}|
+				            	</ui:repeat>
+							</span>
+						</p>
+						<p class="book-description">#{productDetailBean.book.description}</p>
+					</div>
+				</header>
+				<section class="buy-options clearfix">
+					<form jsf:id="form" method="post" class="container">
+						<ul id="variants" class="clearfix">
+							<li class="buy-option"><input type="radio" name="id" class="variant-radio"
+								id="product-variant-#{productDetailBean.book.id}" value="#{productDetailBean.book.id}"
+								checked="checked" /> <label class="variant-label" for="product-variant-#{productDetailBean.book.id}">
+									E-book + Impresso </label> <small class="compare-at-price">R$ #{productDetailBean.book.price}</small>
+								<p class="variant-price">R$ #{productDetailBean.book.price}</p></li>
+						</ul>
+						<button type="submit" jsf:action="#{shoppingCartBean.add(productDetailBean.id)}"
+							class="submit-image icon-basket-alt" title="#{productDetailBean.book.title}"></button>
+					</form>
+				</section>
+				<div class="container">
+					<h2 class="summary-call section-title">Leia este livro e...</h2>
+					<section class="summary">
+						<ul>
+							<!-- aqui poderia ter um real cadastro do sumário -->
+							<li><h3>Seçao 1</h3></li>
+							<li><h3>Seçao 2</h3></li>
+							<li><h3>Seçao 3</h3></li>
+							<li><h3>Seçao 4</h3></li>
+							<li><h3>Seçao 5</h3></li>
+							<li><h3>Seçao 6</h3></li>
+							<li><h3>Seçao 7</h3></li>
+							<li><h3>
+									E muito mais... <a href='#{productDetailBean.book.summaryPath}'>veja o sumário</a>.
+								</h3></li>
+						</ul>
+					</section>
+					<section class="author product-detail">
+						<h2 class="section-title">
+							<ui:repeat var="author" value="#{productDetailBean.book.authors}">
+		            #{author.name}|
+		         </ui:repeat>
+						</h2>
+						<span>
+							<p class="book-description">
+								<img class="author-image" src="" alt="" style="float: left; margin-right: 10px;" /><a>Descricao
+									sobre os autores</a>.
+							</p>
+						</span>
+					</section>
+					<section class="data product-detail">
+						<h2 class="section-title">Dados do livro:</h2>
+						<p>
+							Número de páginas: <span>#{productDetailBean.book.numberOfPages}</span>
+						</p>
+						<p></p>
+						<p>
+							Data de publicação:
+							<h:outputText value="#{productDetailBean.book.releaseDate.time}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p>
+						<p>
+							Encontrou um erro? <a href='/submissao-errata' target='_blank'>Submeta uma errata</a>
+						</p>
+					</section>
+				</div>
+			</article>
+		</section>
+	</h:form>
+</h:body>
+</html>
