@@ -1,7 +1,17 @@
 
-<html xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:o="http://omnifaces.org/ui" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<html xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:o="http://omnifaces.org/ui" 
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+	
+	<f:metadata>
+		<f:viewParam id="id" name="id" value="#{productDetailBean.id}"/>
+		<f:viewAction action="#{productDetailBean.loadBook()}"/>
+	</f:metadata>
+	
 <h:head></h:head>
 <h:body class="index">
 	<h:outputStylesheet library="css" name="guia-do-programador-style.css" />
@@ -9,13 +19,13 @@
 	<h:outputStylesheet library="css" name="style.css" />
 	<h:outputStylesheet library="css" name="layout-colors.css" />
 	<h:outputStylesheet library="css" name="responsive-style.css" />
+	<h:outputStylesheet library="css" name="products.css" />
 	<h:messages />
-	<h:form prependId="false">
 		<section id="index-section" class="container middle">
 			<article id="livro-css-eficiente">
 				<header id="product-highlight" class="clearfix">
 					<div id="product-overview" class="container">
-						<img width="280px" height="395px" src="#{productDetailBean.book.coverPath}"
+						<img width="280px" height="395px" src="#{productDetailBean.book.summaryPath}"
 							class="product-featured-image"
 							alt="CSS Eficiente: Técnicas e ferramentas que fazem a diferença nos seus estilos" />
 						<h1 class="product-title">#{productDetailBean.book.title}</h1>
@@ -62,8 +72,8 @@
 					<section class="author product-detail">
 						<h2 class="section-title">
 							<ui:repeat var="author" value="#{productDetailBean.book.authors}">
-		            #{author.name}|
-		         </ui:repeat>
+					            #{author.name}|
+					        </ui:repeat>
 						</h2>
 						<span>
 							<p class="book-description">
@@ -91,6 +101,5 @@
 				</div>
 			</article>
 		</section>
-	</h:form>
 </h:body>
 </html>

@@ -33,4 +33,8 @@ public class BookDao {
 		return entityManager.createQuery("select b from Book b", Book.class).setMaxResults(20)
 				.getResultList();
 	}
+	
+	public Book findById(Integer id){
+		return entityManager.find(Book.class, id);
+	}
 }

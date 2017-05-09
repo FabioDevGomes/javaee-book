@@ -16,7 +16,7 @@
 		<section id="index-section" class="container middle">
 			<ui:repeat var="book" value="#{homeBean.lastReleases()}">
 				<li>
-					<a href="teste/alterar"> 
+					<a href="#{request.contextPath}/site/detalhe.xhtml?id=#{book.id}"> 
 						<img width="170" height="240" src="#{book.summaryPath}"
 							alt="#{book.title}" title="#{book.title}" />
 						<h2>#{book.title}</h2> 
@@ -29,7 +29,7 @@
 				<ul class="clearfix book-collection">
 					<ui:repeat var="book" value="#{homeBean.olderBooks()}">
 						<li class="col-left">
-							<a href="teste/alterar" class="block clearfix">
+							<a href="#{request.contextPath}/site/detalhe.xhtml?id=#{book.id}" class="block clearfix">
 								<h2 class="product-title">#{book.title}</h2> 
 								<img width="143" height="202" src="#{book.summaryPath}" alt="#{book.title}"
 									title="#{book.title}" /> 

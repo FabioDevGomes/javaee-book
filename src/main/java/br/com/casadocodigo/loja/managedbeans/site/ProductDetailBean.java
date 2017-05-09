@@ -1,6 +1,5 @@
 package br.com.casadocodigo.loja.managedbeans.site;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 
@@ -12,15 +11,24 @@ public class ProductDetailBean {
 	
 	@Inject
 	private BookDao bookDao;
-	private Book book;
+	private Book book = new Book();
+	private Integer id;
 	
-	@PostConstruct
-	public void loadBook(){
-//		bookDao.
+	public String loadBook(){
+		book = bookDao.findById(id);
+		return null;
 	}
 	
 	public Book getBook() {
 		return book;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 }
