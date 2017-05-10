@@ -11,6 +11,13 @@ public class BookDao {
 
 	@PersistenceContext
 	private EntityManager entityManager;
+	
+	public BookDao() {
+	}
+
+	public BookDao(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
 
 	public void save(Book book) {
 		entityManager.persist(book);
