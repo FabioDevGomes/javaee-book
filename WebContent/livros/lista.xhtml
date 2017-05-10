@@ -34,7 +34,9 @@
 			<f:facet name="header">
 				Data de lançamento
 			</f:facet>
-			#{book.releaseDate.time}
+			<h:outputText value="#{book.releaseDate.time}">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:outputText>
 		</h:column>
 		<h:column>
 			<f:facet name="header">
