@@ -21,69 +21,79 @@ import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 public class Book {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@NotBlank
 	@NotNull
 	private String title;
-	
+
 	@NotBlank
 	@NotNull
 	@Length(min = 10)
 	private String description;
-	
+
 	@Min(50)
 	private int numberOfPages;
-	
+
 	@DecimalMin("20")
 	private BigDecimal price;
-	
+
 	@ManyToMany
 	@Size(min = 1)
 	@NotNull
 	private List<Author> authors = new ArrayList<Author>();
-	
+
 	@NotNull
 	@Future
 	private Calendar releaseDate;
-	
-	
+
+	private String coverPath;
+
 	private String summaryPath;
-	
+
 	public void add(Author author) {
 		getAuthors().add(author);
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public int getNumberOfPages() {
 		return numberOfPages;
 	}
+
 	public void setNumberOfPages(int numberOfPages) {
 		this.numberOfPages = numberOfPages;
 	}
+
 	public BigDecimal getPrice() {
 		return price;
 	}
+
 	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
@@ -111,5 +121,13 @@ public class Book {
 	public void setSummaryPath(String summaryPath) {
 		this.summaryPath = summaryPath;
 	}
-	
+
+	public String getCoverPath() {
+		return coverPath;
+	}
+
+	public void setCoverPath(String coverPath) {
+		this.coverPath = coverPath;
+	}
+
 }

@@ -30,6 +30,7 @@ public class AdminBooksBean {
 	@Inject
 	private FileSaver fileSaver;
 	private Part summary;
+	private Part cover;
 	
 	public AdminBooksBean(){}
 	
@@ -47,8 +48,12 @@ public class AdminBooksBean {
 	@Transactional
 	public String save(){
 		String summaryPath = fileSaver.writer("summaries", summary);
+		String coverPath = fileSaver.writer("cover", cover);
+		
 		product.setSummaryPath(summaryPath);
+		product.setCoverPath(coverPath);
 		bookDao.save(product);
+		
 		messagesHelper.addFlash(new FacesMessage("Livro adicionado com sucesso!"));
 		return "/livros/lista?faces-redirect=true";
 	}
@@ -79,5 +84,13 @@ public class AdminBooksBean {
 
 	public void setSummary(Part summary) {
 		this.summary = summary;
+	}
+
+	public Part getCover() {
+		return cover;
+	}
+
+	public void setCover(Part cover) {
+		this.cover = cover;
 	}
 }
