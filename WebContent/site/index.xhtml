@@ -17,7 +17,7 @@
 			<ui:repeat var="book" value="#{homeBean.lastReleases()}">
 				<li>
 					<a href="#{request.contextPath}/site/detalhe.xhtml?id=#{book.id}"> 
-						<img width="170" height="240" src="#{book.summaryPath}"
+						<img width="170" height="240" src="#{book.coverPath}"
 							alt="#{book.title}" title="#{book.title}" />
 						<h2>#{book.title}</h2> 
 						<small>Lançamento!</small>
@@ -31,7 +31,7 @@
 						<li class="col-left">
 							<a href="#{request.contextPath}/site/detalhe.xhtml?id=#{book.id}" class="block clearfix">
 								<h2 class="product-title">#{book.title}</h2> 
-								<img width="143" height="202" src="#{book.summaryPath}" alt="#{book.title}"
+								<img width="143" height="202" src="#{book.coverPath}" alt="#{book.title}"
 									title="#{book.title}" /> 
 								<small class="buy-button">Compre!</small>
 							</a>

@@ -21,7 +21,7 @@ public class FileSaver {
 		String fileName = extractFileName(multpartFile.getHeader(CONTENT_DISPOSITION));
 
 		try {
-			s3.putObject("casadocodigo", fileName, multpartFile.getInputStream(),
+			s3.putObject("casadocodigo", baseFolder +"_"+fileName, multpartFile.getInputStream(),
 					new ObjectMetadata());
 
 			return "http://localhost:9444/s3/casadocodigo/"+ baseFolder +"_"+ fileName +"?noAuth=true";

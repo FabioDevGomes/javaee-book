@@ -47,6 +47,7 @@ public class AdminBooksBean {
 
 	@Transactional
 	public String save(){
+		//tratar exceção no caso de tentativa de cadastro sem capa ou sumário
 		String summaryPath = fileSaver.writer("summaries", summary);
 		String coverPath = fileSaver.writer("cover", cover);
 		
