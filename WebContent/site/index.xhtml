@@ -14,16 +14,18 @@
 	<h:messages />
 	<h:form prependId="false">
 		<section id="index-section" class="container middle">
-			<ui:repeat var="book" value="#{homeBean.lastReleases()}">
-				<li>
-					<a href="#{request.contextPath}/site/detalhe.xhtml?id=#{book.id}"> 
-						<img width="170" height="240" src="#{book.coverPath}"
-							alt="#{book.title}" title="#{book.title}" />
-						<h2>#{book.title}</h2> 
-						<small>Lançamento!</small>
-					</a>
-				</li>
-			</ui:repeat>
+			<ul id="home-highlight-collection">
+				<ui:repeat var="book" value="#{homeBean.lastReleases()}">
+					<li class="col-left">
+						<a href="#{request.contextPath}/site/detalhe.xhtml?id=#{book.id}" class="block clearfix"> 
+							<img width="170" height="240" src="#{book.coverPath}"
+								alt="#{book.title}" title="#{book.title}" />
+							<h2 class="product-title">#{book.title}</h2> 
+							<small class="buy-button">Lançamento!</small>
+						</a>
+					</li>
+				</ui:repeat>
+			</ul>
 			<h1 class="cdc-call">Últimos dias com os preços promocionais. Aproveite!</h1>
 			<o:cache scope="application">
 				<ul class="clearfix book-collection">
