@@ -7,6 +7,7 @@
 	<h:outputStylesheet library="css" name="book-collection.css" />
 	<h:outputStylesheet library="css" name="style.css" />
 	<h:outputStylesheet library="css" name="checkout-style.css" />
+	<h:outputStylesheet library="css" name="checkout.scss.css" />
 	<h:outputStylesheet library="css" name="layout-colors.css" />
 	<h:outputStylesheet library="css" name="responsive-style.css" />
 	<h:outputStylesheet library="css" name="products.css" />
@@ -50,10 +51,12 @@
 			</tbody>
 			<tfoot>
 				<tr>
-					<td colspan="3"><a href="${request.contextPath}/site/checkout.xhtml" id="checkout" class="checkout">Finalizar
-							compra</a></td>
-					<td class="quantity-input-cell"><input type="submit" class="update-cart" disabled="disabled"
-						name="update" value="" /></td>
+					<td colspan="3">
+						<a href="${request.contextPath}/site/checkout.xhtml" id="checkout" class="checkout">Finalizar compra</a>
+					</td>
+					<td class="quantity-input-cell">
+						<input type="submit" class="update-cart" disabled="disabled" name="update" value="" />
+					</td>
 					<td class="numeric-cell">R$ #{shoppingCart.total}</td>
 					<td></td>
 				</tr>
