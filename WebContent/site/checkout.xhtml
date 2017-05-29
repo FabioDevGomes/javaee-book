@@ -40,8 +40,11 @@
 						src="#{item.book.coverPath}" width="150px" height="150px" />
 						<div class="product__info">
 							<span class="product__info__name"><strong>#{item.book.title}</strong> ×
-								#{shoppingCart.getQuantity(item)}</span> <span class="product__info__description">E-book + Impresso</span>
-						</div> <strong class="product__price">R$ #{shoppingCart.getTotal(item)}</strong></li>
+								#{shoppingCart.getQuantity(item)}</span> 
+							<span class="product__info__description">E-book + Impresso</span>
+						</div> 
+						<strong class="product__price">R$ #{shoppingCart.getTotal(item)}</strong>
+					</li>
 				</ui:repeat>
 			</ul>
 		</div>

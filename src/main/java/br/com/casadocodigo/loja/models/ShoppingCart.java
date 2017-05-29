@@ -47,13 +47,17 @@ public class ShoppingCart implements Serializable {
 		}
 		return total;
 	}
-
+	
 	public void remove(ShoppingItem item) {
 		items.remove(item);
 	}
 
 	public boolean isEmpty() {
 		return items.isEmpty();
+	}
+
+	public String toJson(){
+		return "";
 	}
 
 }
