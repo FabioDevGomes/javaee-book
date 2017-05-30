@@ -9,6 +9,8 @@ import java.util.Map;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
 
 
 @Named
@@ -57,7 +59,15 @@ public class ShoppingCart implements Serializable {
 	}
 
 	public String toJson(){
-		return "";
+		JsonArrayBuilder itens = Json.createArrayBuilder();
+		for (ShoppingItem item : getList()) {
+			itens.add(Json.createObjectBuilder()
+					.add("title", item.getBook().getTitle())
+					.add("price", item.getPrice())
+					.add("quantity", getQuantity().intValue()) //testar se o autoboxing resolve isso
+					.add("sum", getTotal(item)));
+		}
+		return itens.build().toString();
 	}
 
 }

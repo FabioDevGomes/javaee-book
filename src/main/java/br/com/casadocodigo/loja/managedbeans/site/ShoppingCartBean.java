@@ -11,6 +11,8 @@ import br.com.casadocodigo.loja.models.ShoppingItem;
 @Model
 public class ShoppingCartBean {
 
+	//disponível na view (@named)
+	//vive durante a sessão
 	@Inject
 	private ShoppingCart shoppingCart;
 
