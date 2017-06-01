@@ -44,4 +44,5 @@ public class BookDao {
 	public Book findById(Integer id){
 		return entityManager.find(Book.class, id);
 	}
+	
 }
