@@ -21,7 +21,7 @@ public class CheckoutDao {
 	}
 	
 	public Checkout findByUUID(String uuid){
-		return entityManager.createQuery("selec b from Book b where b.uuid = ?1", Checkout.class).setParameter(1, uuid).getSingleResult();
+		return entityManager.createQuery("select c from Checkout c where c.uuid = ?1", Checkout.class).setParameter(1, uuid).getSingleResult();
 	}
 	
 }

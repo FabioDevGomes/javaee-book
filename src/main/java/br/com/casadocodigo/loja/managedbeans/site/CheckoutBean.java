@@ -45,7 +45,7 @@ public class CheckoutBean {
 		HttpServletResponse response = (HttpServletResponse) facesContext.getExternalContext().getResponse();
 		
 		response.setStatus(307);
-		response.setHeader("Location", "/"+ contextName +""+ checkout.getUuid());
+		response.setHeader("Location", "/"+ contextName +"/services/payment?uuid="+ checkout.getUuid());
 		
 	}
 	
