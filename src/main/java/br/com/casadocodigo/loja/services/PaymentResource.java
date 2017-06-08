@@ -5,6 +5,8 @@ import java.net.URI;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import javax.annotation.Resource;
+import javax.enterprise.concurrent.ManagedExecutorService;
 import javax.inject.Inject;
 import javax.servlet.ServletContext;
 import javax.ws.rs.POST;
@@ -23,7 +25,9 @@ import br.com.casadocodigo.loja.models.Checkout;
 @Path("payment")
 public class PaymentResource {
 
-	private static ExecutorService executor = Executors.newFixedThreadPool(50);
+	@Resource(name = "java:comp/DefaultManagedExecutorService")
+	private ManagedExecutorService managedExecutorService;
+//	private static ExecutorService executor = Executors.newFixedThreadPool(50);
 	@Context
 	private ServletContext ctx;
 	@Inject
@@ -36,7 +40,7 @@ public class PaymentResource {
 		String contextPath = ctx.getContextPath();
 		Checkout checkout = checkoutDao.findByUUID(uuid);
 
-		executor.submit(() -> {
+		managedExecutorService.submit(() -> {
 			try {
 				BigDecimal total = checkout.getValue();
 				paymentGateway.pay(total);

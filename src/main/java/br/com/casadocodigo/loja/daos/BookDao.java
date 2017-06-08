@@ -4,6 +4,10 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.QueryHint;
+import javax.persistence.TypedQuery;
+
+import org.hibernate.jpa.QueryHints;
 
 import br.com.casadocodigo.loja.models.Book;
 
@@ -11,7 +15,7 @@ public class BookDao {
 
 	@PersistenceContext
 	private EntityManager entityManager;
-	
+
 	public BookDao() {
 	}
 
@@ -30,19 +34,22 @@ public class BookDao {
 	}
 
 	public List<Book> lastReleases() {
-		return entityManager
+		TypedQuery<Book> query = entityManager
 				.createQuery("select b from Book b where b.releaseDate <= now() order by b.id desc",
 						Book.class)
-				.setMaxResults(3).getResultList();
+				.setMaxResults(3);
+		query.setHint(QueryHints.HINT_CACHEABLE, true);
+
+		return query.getResultList();
 	}
 
 	public List<Book> olderBooks() {
 		return entityManager.createQuery("select b from Book b", Book.class).setMaxResults(20)
 				.getResultList();
 	}
-	
-	public Book findById(Integer id){
+
+	public Book findById(Integer id) {
 		return entityManager.find(Book.class, id);
 	}
-	
+
 }
