@@ -1,4 +1,4 @@
-package br.com.casadocodigo.loja.services;
+package br.com.casadocodigo.loja.resources;
 
 import java.math.BigDecimal;
 import java.net.URI;
@@ -21,6 +21,7 @@ import javax.ws.rs.core.UriBuilder;
 
 import br.com.casadocodigo.loja.daos.CheckoutDao;
 import br.com.casadocodigo.loja.models.Checkout;
+import br.com.casadocodigo.loja.services.PaymentGateway;
 
 @Path("payment")
 public class PaymentResource {
