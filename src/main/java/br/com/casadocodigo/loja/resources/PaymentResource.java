@@ -20,6 +20,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 
 import br.com.casadocodigo.loja.daos.CheckoutDao;
+import br.com.casadocodigo.loja.infra.MailSender;
 import br.com.casadocodigo.loja.models.Checkout;
 import br.com.casadocodigo.loja.services.PaymentGateway;
 
@@ -35,6 +36,8 @@ public class PaymentResource {
 	private CheckoutDao checkoutDao;
 	@Inject
 	private PaymentGateway paymentGateway;
+	@Inject
+	private MailSender mailSender;
 
 	@POST
 	public void pay(@Suspended final AsyncResponse ar, @QueryParam("uuid") String uuid) {
@@ -45,6 +48,9 @@ public class PaymentResource {
 			try {
 				BigDecimal total = checkout.getValue();
 				paymentGateway.pay(total);
+				
+				String mailBody = "Nova compra. Seu código de acompanhamento é "+checkout.getUuid();
+				mailSender.send("compras@cadadocodigo.com.br", checkout.getBuyer().getEmail(), "Nova Compra", mailBody);
 				
 				URI uriRedirect = UriBuilder
 						.fromPath("http://localhost:8080" + contextPath + "/site/index.xhtml")
