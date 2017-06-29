@@ -8,6 +8,9 @@ import java.util.concurrent.Executors;
 import javax.annotation.Resource;
 import javax.enterprise.concurrent.ManagedExecutorService;
 import javax.inject.Inject;
+import javax.jms.Destination;
+import javax.jms.JMSContext;
+import javax.jms.JMSProducer;
 import javax.servlet.ServletContext;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -38,19 +41,24 @@ public class PaymentResource {
 	private PaymentGateway paymentGateway;
 	@Inject
 	private MailSender mailSender;
+	@Inject
+	private JMSContext jmsContext;
+	
+	@Resource(lookup = "java:/jms/topics/checkoutsTopic")
+	private Destination checkoutsTopic;
 
 	@POST
 	public void pay(@Suspended final AsyncResponse ar, @QueryParam("uuid") String uuid) {
 		String contextPath = ctx.getContextPath();
 		Checkout checkout = checkoutDao.findByUUID(uuid);
+		JMSProducer producer = jmsContext.createProducer();
 
 		managedExecutorService.submit(() -> {
 			try {
 				BigDecimal total = checkout.getValue();
 				paymentGateway.pay(total);
 				
-				String mailBody = "Nova compra. Seu código de acompanhamento é "+checkout.getUuid();
-				mailSender.send("compras@cadadocodigo.com.br", checkout.getBuyer().getEmail(), "Nova Compra", mailBody);
+				producer.send(checkoutsTopic, checkout.getUuid());
 				
 				URI uriRedirect = UriBuilder
 						.fromPath("http://localhost:8080" + contextPath + "/site/index.xhtml")

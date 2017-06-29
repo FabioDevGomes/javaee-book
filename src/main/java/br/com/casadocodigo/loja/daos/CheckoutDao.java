@@ -16,10 +16,6 @@ public class CheckoutDao {
 		this.entityManager.persist(checkout);
 	}
 	
-	public void finfByUUID(String uuid){
-		
-	}
-	
 	public Checkout findByUUID(String uuid){
 		return entityManager.createQuery("select c from Checkout c where c.uuid = ?1", Checkout.class).setParameter(1, uuid).getSingleResult();
 	}
