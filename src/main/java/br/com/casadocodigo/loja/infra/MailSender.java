@@ -22,7 +22,7 @@ public class MailSender {
 		try {
 			mimeMessage.setRecipients(RecipientType.TO, InternetAddress.parse(to));
 			mimeMessage.setFrom(new InternetAddress(from));
-			mimeMessage.setSubject("Sua compra foi registrada");
+			mimeMessage.setSubject(subject);
 			mimeMessage.setContent(body, "text/html");
 			
 			Transport.send(mimeMessage);
