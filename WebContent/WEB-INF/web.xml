@@ -10,7 +10,7 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
-  <servlet>
+  	<servlet>
 		<servlet-name>jsf</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
 	</servlet>
@@ -19,4 +19,32 @@
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
 	
+	<!--Configurações de segurança com JAAS -->
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<form-login-config>
+			<form-login-page>/users/login.xhtml</form-login-page>
+			<form-error-page>/users/login.xhtml</form-error-page>
+		</form-login-config>
+	</login-config>
+	<security-constraint>
+		<display-name>Administração</display-name>
+		<web-resource-collection>
+			<web-resource-name>
+				administracao
+			</web-resource-name>
+			<description>
+				Urls que levam para a página de administração
+			</description>
+			<url-pattern>/livros/*</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>ADMIN</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<security-role>
+		<role-name>ADMIN</role-name>
+	</security-role>
 </web-app>
