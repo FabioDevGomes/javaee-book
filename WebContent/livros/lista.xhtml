@@ -5,6 +5,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:body>
 	<h:messages />
+	<div>
+		${currentSystemUser.user.email}
+	</div>
 	<h:dataTable value="#{adminListBooksBean.books}" var="book">
 		<h:column>
 			<f:facet name="header">
