@@ -6,46 +6,46 @@
     
     
     <ui:composition template="/site/_template.xhtml">
-    
-    <ui:define name="extraCss">
-			<link href="#{request.contextPath}/resources/css/book-collection.css" rel="stylesheet" type="text/css" media="all" />
-	</ui:define>
+	    <ui:param name="bodyClass" value="index"/>
+	    <ui:define name="extraCss">
+				<link href="#{request.contextPath}/resources/css/book-collection.css" rel="stylesheet" type="text/css" media="all" />
+		</ui:define>
      
-     <ui:define name="body">
-<!-- 			<h:outputStylesheet library="css" name="guia-do-programador-style.css"  /> -->
-<!-- 			<h:messages /> -->
-<!-- 			<h:outputText value="#{param['msg']}" /> -->
-<!-- 			<h:form prependId="false"> --> 
-				<section id="index-section" class="container middle">
-					<ul id="home-highlight-collection">
-						<ui:repeat var="book" value="#{homeBean.lastReleases()}">
-							<li class="col-left">
-								<a href="#{request.contextPath}/site/detalhe.xhtml?id=#{book.id}" class="block clearfix"> 
-									<img width="170" height="240" src="#{book.coverPath}"
-										alt="#{book.title}" title="#{book.title}" />
-									<h2 class="product-title">#{book.title}</h2> 
-									<small class="buy-button">Lançamento!</small>
-								</a>
-							</li>
-						</ui:repeat>
-					</ul>
-					<h1 class="cdc-call">Últimos dias com os preços promocionais. Aproveite!</h1>
-		<!-- 			<o:cache scope="application"> -->
-						<ul class="clearfix book-collection">
-							<ui:repeat var="book" value="#{homeBean.olderBooks()}">
+	     <ui:define name="body">
+	<!-- 			<h:outputStylesheet library="css" name="guia-do-programador-style.css"  /> -->
+	<!-- 			<h:messages /> -->
+	<!-- 			<h:outputText value="#{param['msg']}" /> -->
+	<!-- 			<h:form prependId="false"> --> 
+					<section id="index-section" class="container middle">
+						<ul id="home-highlight-collection">
+							<ui:repeat var="book" value="#{homeBean.lastReleases()}">
 								<li class="col-left">
-									<a href="#{request.contextPath}/site/detalhe.xhtml?id=#{book.id}" class="block clearfix">
+									<a href="#{request.contextPath}/site/detalhe.xhtml?id=#{book.id}" class="block clearfix"> 
+										<img width="170" height="240" src="#{book.coverPath}"
+											alt="#{book.title}" title="#{book.title}" />
 										<h2 class="product-title">#{book.title}</h2> 
-										<img width="143" height="202" src="#{book.coverPath}" alt="#{book.title}"
-											title="#{book.title}" /> 
-										<small class="buy-button">Compre!</small>
+										<small class="buy-button">Lançamento!</small>
 									</a>
 								</li>
 							</ui:repeat>
 						</ul>
-		<!-- 			</o:cache> -->
-				</section>
-<!-- 			</h:form> -->
-	 </ui:define>
+						<h1 class="cdc-call">Últimos dias com os preços promocionais. Aproveite!</h1>
+			<!-- 			<o:cache scope="application"> -->
+							<ul class="clearfix book-collection">
+								<ui:repeat var="book" value="#{homeBean.olderBooks()}">
+									<li class="col-left">
+										<a href="#{request.contextPath}/site/detalhe.xhtml?id=#{book.id}" class="block clearfix">
+											<h2 class="product-title">#{book.title}</h2> 
+											<img width="143" height="202" src="#{book.coverPath}" alt="#{book.title}"
+												title="#{book.title}" /> 
+											<small class="buy-button">Compre!</small>
+										</a>
+									</li>
+								</ui:repeat>
+							</ul>
+			<!-- 			</o:cache> -->
+					</section>
+	<!-- 			</h:form> -->
+		 </ui:define>
   </ui:composition>
 </html>
