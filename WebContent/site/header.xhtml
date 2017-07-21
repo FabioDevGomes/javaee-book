@@ -12,17 +12,17 @@
 						<ul class="clearfix">
 							<c:if test="#{currentSystemUser.hasHole('ADMIN')}">
 								<li>
-									<a href="#{request.contextPath}/livros/lista.xhtml" rel="nofollow">Administração</a>
+									<a href="#{request.contextPath}/livros/lista.xhtml" rel="nofollow">#{msg.menuPrincipal_admin}</a>
 								</li>
 							</c:if>
 							<li>
-								<a href="#{request.contextPath}/site/carrinho.xhtml" rel="nofollow">Seu Carrinho</a>
+								<a href="#{request.contextPath}/site/carrinho.xhtml" rel="nofollow">#{msg.menuPrincipal_seuCarrinho}</a>
 							</li>
 							<li>
-								<a href="#{request.contextPath}/livros/lista.xhtml" rel="nofollow">Sobre nós</a>
+								<a href="#{request.contextPath}/livros/lista.xhtml" rel="nofollow">#{msg.menuPrincipal_sobreNos}</a>
 							</li>
 							<li>
-								<a href="#{request.contextPath}/livros/lista.xhtml" rel="nofollow">Perguntas frequentes</a>
+								<a href="#{request.contextPath}/livros/lista.xhtml" rel="nofollow">#{msg.menuPrincipal_perguntasFrequentes}</a>
 							</li>
 						</ul>
 					</nav>
