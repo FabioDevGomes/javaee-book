@@ -26,6 +26,20 @@
 							</li>
 						</ul>
 					</nav>
+					<nav id="main-nav">
+						<ul class="clearfix">
+							<li>
+								<h:form>
+									<h:commandLink action="#{i18nBean.changeLocale('pt')}" value="#{msg.lingua_pt}" />
+								</h:form>
+							</li>
+							<li>
+								<h:form>
+									<h:commandLink action="#{i18nBean.changeLocale('en')}" value="#{msg.lingua_en}" />
+								</h:form>
+							</li>
+						</ul>
+					</nav>
 				</div>
 			</div>
 		</header>
