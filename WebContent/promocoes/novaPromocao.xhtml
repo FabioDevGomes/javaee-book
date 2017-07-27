@@ -1,0 +1,21 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:body>
+	<h:messages />
+	<h:form>
+		<div>
+			<h:outputLabel value="Título" />
+			<h:inputText value="#{adminSalesBean.sale.title}" />
+		</div>
+		<div>
+			<h:outputLabel value="Livro" for="livro" />
+			<h:selectOneMenu id="livro" value="#{adminSalesBean.sale.book.id}">
+				<f:selectItems value="#{adminListBooksBean.books}" var="book" itemLabel="#{book.title}"
+					itemValue="#{book.id}" />
+			</h:selectOneMenu>
+		</div>
+		<h:commandButton action="#{adminSalesBean.save()}" value="Gravar" />
+	</h:form>
+</h:body>
+</html>
