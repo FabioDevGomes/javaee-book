@@ -1,21 +1,59 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition template="/admin/_templateAdmin.xhtml">
+	<ui:param name="bodyClass" value="section__form js-shipping-address-with-selector" />
+	<div class="wrap">
+		<div id="checkout" class="current-step-contact_information" data-session-storage="">
+			<div id="contact-information" class="section step step--current">
+				<div class="section__header">
+					<h3>Informações do cliente</h3>
+					<ui:define name="body">
+						<div class="fieldset">
+							<div class="field field--required">
+								<h:outputLabel value="Título" />
+								<h:inputText value="#{adminSalesBean.sale.title}" />
+							</div>
+							<div>
+								<h:outputLabel value="Livro" for="livro" />
+								<h:selectOneMenu id="livro" value="#{adminSalesBean.sale.book.id}">
+									<f:selectItems value="#{adminListBooksBean.books}" var="book" itemLabel="#{book.title}"
+										itemValue="#{book.id}" />
+								</h:selectOneMenu>
+							</div>
+							<h:commandButton action="#{adminSalesBean.save()}" value="Gravar" />
+						</div>
+						
+						<div class="main">
+							<div class="wrap">
+								<div id="checkout" class="current-step-contact_information" data-session-storage="">
+									<div id="contact-information" class="section step step--current">
+										<form accept-charset="UTF-8" 
+											class="section__form js-shipping-address-with-selector"  method="post">
+											<div style="display: none"></div>
+											<div class="fieldset" data-email-check='#checkout_email_suggestion'>
+												<div class="field field--required">
+													<label for="checkout_email">Título da Promoção</label> 
+													
+													<h:inputText value="#{adminSalesBean.sale.title}" />
+														
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</ui:define>
+				</div>
+			</div>
+		</div>
+	</div>
+</ui:composition>
 <h:body>
 	<h:messages />
-	<h:form>
-		<div>
-			<h:outputLabel value="Título" />
-			<h:inputText value="#{adminSalesBean.sale.title}" />
-		</div>
-		<div>
-			<h:outputLabel value="Livro" for="livro" />
-			<h:selectOneMenu id="livro" value="#{adminSalesBean.sale.book.id}">
-				<f:selectItems value="#{adminListBooksBean.books}" var="book" itemLabel="#{book.title}"
-					itemValue="#{book.id}" />
-			</h:selectOneMenu>
-		</div>
-		<h:commandButton action="#{adminSalesBean.save()}" value="Gravar" />
+	<h:form class="section__form js-shipping-address-with-selector">
 	</h:form>
 </h:body>
 </html>
