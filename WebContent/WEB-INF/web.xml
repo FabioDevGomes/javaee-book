@@ -37,6 +37,7 @@
 				Urls que levam para a página de administração
 			</description>
 			<url-pattern>/livros/*</url-pattern>
+			<url-pattern>/produtos/*</url-pattern>
 			<url-pattern>/promocoes/*</url-pattern>
 			<http-method>GET</http-method>
 			<http-method>POST</http-method>

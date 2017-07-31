@@ -149,8 +149,8 @@
 								</o:messages>
 							</div>
 							<div class="field field--required" data-country-section="1">
-								<label for="checkout_shipping_address_country">País</label> <select
-									jsf:value="#{checkoutBean.systemUser.country}" jsf:id="country" size="1">
+								<label for="checkout_shipping_address_country">País</label> 
+								<select	jsf:value="#{checkoutBean.systemUser.country}" jsf:id="country" size="1">
 									<f:validateBean validationGroups="br.com.casadocodigo.loja.models.validation.groups.BuyerGroup" />
 									<f:selectItem itemValue="" itemLabel="Escolha o país" />
 									<f:selectItem itemValue="Portugal" itemLabel="Portugal" />
