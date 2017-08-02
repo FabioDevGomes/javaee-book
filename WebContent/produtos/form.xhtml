@@ -1,47 +1,72 @@
 
 <html xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns="http://www.w3.org/1999/xhtml" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
-<h:body>
-	<h:messages />
-	<h:form prependId="false" enctype="multipart/form-data">
-		<div>
-			<h:outputLabel>Titulo</h:outputLabel>
-			<h:inputText id="titulo" value="#{adminBooksBean.product.title}" />
-			<h:message for="titulo" />
+	xmlns="http://www.w3.org/1999/xhtml" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="/admin/_templateAdmin.xhtml">
+	<div class="wrap">
+		<div class="current-step-contact_information" data-session-storage="">
+			<div id="contact-information" class="section step step--current">
+				<div class="section__header">
+					<ui:define name="body">
+						<div class="main">
+							<div class="wrap">
+								<div class="current-step-contact_information">
+									<div id="contact-information" class="section step step--current">
+										<h:messages />
+										<h:form prependId="false" enctype="multipart/form-data">
+											<h3>Informações do cliente</h3>
+											<div class="fieldset">
+												<div class="field field--required">
+													<h:outputLabel>Titulo</h:outputLabel>
+													<h:inputText id="titulo" value="#{adminBooksBean.product.title}" />
+													<h:message for="titulo" />
+												</div>
+												<div class="field field--required">
+													<h:outputLabel>Descrição</h:outputLabel>
+													<h:inputTextarea id="descicao" cols="20" rows="10" value="#{adminBooksBean.product.description}" />
+												</div>
+												<div class="field field--required">
+													<h:outputLabel>Número de páginas</h:outputLabel>
+													<h:inputText id="paginas" value="#{adminBooksBean.product.numberOfPages}" />
+												</div>
+												<div class="field field--required">
+													<h:outputLabel>Preço</h:outputLabel>
+													<h:inputText id="preco" value="#{adminBooksBean.product.price}" />
+												</div>
+												<div class="field field--required">
+													<h:outputLabel>Autores</h:outputLabel>
+													<h:selectManyListbox id="autores" value="#{adminBooksBean.product.authors}"
+														converter="entityConverter">
+														<f:selectItems value="#{adminBooksBean.autors}" var="author" itemLabel="#{author.name}"
+															itemValue="#{author}" />
+													</h:selectManyListbox>
+												</div>
+												<div class="field field--required">
+													<h:outputLabel value="Data de lançamento" />
+													<h:inputText value="#{adminBooksBean.product.releaseDate}" pt:type="date">
+													</h:inputText>
+												</div>
+												<div class="field field--required">
+													<h:outputLabel value="Capa do livro" />
+													<h:inputFile id="cover" label="Capa do livro" value="#{adminBooksBean.cover}" />
+												</div>
+												<div class="field field--required">
+													<h:outputLabel value="Sumário do livro" />
+													<h:inputFile id="sumary" label="Sumário do livro" value="#{adminBooksBean.summary}" />
+												</div>
+											</div>
+											<div class="call-to-action">
+												<h:commandButton value="Gravar" action="#{adminBooksBean.save}" />
+											</div>
+										</h:form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</ui:define>
+				</div>
+			</div>
 		</div>
-		<div>
-			<h:outputLabel>Descrição</h:outputLabel>
-			<h:inputTextarea id="descicao" cols="20" rows="10" value="#{adminBooksBean.product.description}" />
-		</div>
-		<div>
-			<h:outputLabel>Número de páginas</h:outputLabel>
-			<h:inputText id="paginas" value="#{adminBooksBean.product.numberOfPages}" />
-		</div>
-		<div>
-			<h:outputLabel>Preço</h:outputLabel>
-			<h:inputText id="preco" value="#{adminBooksBean.product.price}" />
-		</div>
-		<div>
-			<h:outputLabel>Autores</h:outputLabel>
-			<h:selectManyListbox id="autores" value="#{adminBooksBean.product.authors}" converter="entityConverter">
-				<f:selectItems value="#{adminBooksBean.autors}" var="author" itemLabel="#{author.name}"
-					itemValue="#{author}" />
-			</h:selectManyListbox>
-		</div>
-		<div>
-			<h:outputLabel value="Data de lançamento" />
-			<h:inputText value="#{adminBooksBean.product.releaseDate}" pt:type="date">
-			</h:inputText>
-		</div>
-		<div>
-			<h:outputLabel value="Capa do livro" />
-			<h:inputFile id="cover" label="Capa do livro" value="#{adminBooksBean.cover}"/>
-		</div>
-		<div>
-			<h:outputLabel value="Sumário do livro" />
-			<h:inputFile id="sumary" label="Sumário do livro" value="#{adminBooksBean.summary}"/>
-		</div>
-		<h:commandButton value="Gravar" action="#{adminBooksBean.save}" />
-	</h:form>
-</h:body>
+	</div>
+</ui:composition>
 </html>

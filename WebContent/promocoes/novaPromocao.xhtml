@@ -4,20 +4,18 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 <ui:composition template="/admin/_templateAdmin.xhtml">
-	<ui:param name="bodyClass" value="section__form js-shipping-address-with-selector" />
 	<div class="wrap">
 		<div class="current-step-contact_information" data-session-storage="">
 			<div id="contact-information" class="section step step--current">
 				<div class="section__header">
-					<h3>Informações do cliente</h3>
 					<ui:define name="body">
 						<div class="main">
 							<div class="wrap">
 								<div class="current-step-contact_information" data-session-storage="">
 									<div id="contact-information" class="section step step--current">
-										<form accept-charset="UTF-8" 
-											class="section__form js-shipping-address-with-selector"  method="post">
-											<div class="fieldset" data-email-check='#checkout_email_suggestion'>
+										<h3>Informações da promoção</h3>
+										<h:form method="get">
+											<div class="fieldset">
 												<div class="field field--required">
 													<label for="checkout_email">Título da Promoção</label> 
 													<h:inputText value="#{adminSalesBean.sale.title}" />
@@ -33,7 +31,7 @@
 											<div class="call-to-action">
 												<h:commandButton class="btn" name="commit" action="#{adminSalesBean.save()}" type="submit" value="Enviar Promoção" />
 											</div>
-										</form>
+										</h:form>
 									</div>
 								</div>
 							</div>
