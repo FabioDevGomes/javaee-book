@@ -3,6 +3,7 @@
 	xmlns="http://www.w3.org/1999/xhtml" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <ui:composition template="/admin/_templateAdmin.xhtml">
+	<ui:param name="bodyClass" value="index"/>
 	<div class="wrap">
 		<div class="current-step-contact_information" data-session-storage="">
 			<div id="contact-information" class="section step step--current">
@@ -56,7 +57,7 @@
 												</div>
 											</div>
 											<div class="call-to-action">
-												<h:commandButton value="Gravar" action="#{adminBooksBean.save}" />
+												<h:commandButton value="Gravar" class="btn"  action="#{adminBooksBean.save}" />
 											</div>
 										</h:form>
 									</div>

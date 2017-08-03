@@ -13,7 +13,6 @@
 <body class="#{bodyClass}">
 	<ui:include src="headerAdmin.xhtml"/>
 	<ui:insert name="body"/>
-	<ui:include src="footerAdmin.xhtml"/>
 	<script>
 		var salesChannel = new WebSocket("ws://localhost:8080/#{request.contextPath}/channel/sales");
 
