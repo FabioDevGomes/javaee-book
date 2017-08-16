@@ -36,7 +36,7 @@ public class CheckoutBean {
 	
 	@Transactional
 	public void checkout(){
-		systemUserDao.save(systemUser);
+		checkUser();
 		
 		Checkout checkout = new Checkout(systemUser, shoppingCart);
 		checkoutDao.save(checkout);
@@ -46,7 +46,15 @@ public class CheckoutBean {
 		
 		response.setStatus(307);
 		response.setHeader("Location", "/"+ contextName +"/services/payment?uuid="+ checkout.getUuid());
-		
+	}
+
+	private void checkUser() {
+		SystemUser userExist = systemUserDao.findByEmail(systemUser.getEmail());
+		if(userExist == null){
+			systemUserDao.save(systemUser);
+		}else{
+			systemUser = userExist;
+		}
 	}
 	
 }
