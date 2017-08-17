@@ -10,7 +10,7 @@ public class ShoppingItem {
 	public ShoppingItem(Book book) {
 		super();
 		this.book = book;
-		this.bookId = bookId;
+		bookId = book.getId();
 	}
 
 	public Book getBook() {
@@ -58,6 +58,11 @@ public class ShoppingItem {
 		} else if (!bookId.equals(other.bookId))
 			return false;
 		return true;
+	}
+	
+	@Override
+	public String toString() {
+		return String.valueOf(hashCode());
 	}
 	
 	

@@ -3,6 +3,7 @@ package br.com.casadocodigo.loja.models;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -51,11 +52,19 @@ public class ShoppingCart implements Serializable {
 	}
 	
 	public void remove(ShoppingItem item) {
-		items.remove(item);
+		//items.remove(item);
+		 items.keySet().contains(item);
+		 items.get(item);
+		 
+		items.keySet().remove(item);
 	}
 
 	public boolean isEmpty() {
 		return items.isEmpty();
+	}
+	
+	public void clear(){
+		items.clear();
 	}
 
 	public String toJson(){

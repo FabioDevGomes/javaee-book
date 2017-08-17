@@ -11,6 +11,7 @@ import br.com.casadocodigo.loja.daos.CheckoutDao;
 import br.com.casadocodigo.loja.daos.SystemUserDao;
 import br.com.casadocodigo.loja.models.Checkout;
 import br.com.casadocodigo.loja.models.ShoppingCart;
+import br.com.casadocodigo.loja.models.ShoppingItem;
 import br.com.casadocodigo.loja.models.SystemUser;
 
 @Model
@@ -40,6 +41,7 @@ public class CheckoutBean {
 		
 		Checkout checkout = new Checkout(systemUser, shoppingCart);
 		checkoutDao.save(checkout);
+		shoppingCart.clear();
 		
 		String contextName = facesContext.getExternalContext().getContextName();
 		HttpServletResponse response = (HttpServletResponse) facesContext.getExternalContext().getResponse();

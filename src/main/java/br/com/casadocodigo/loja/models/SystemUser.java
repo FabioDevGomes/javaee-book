@@ -30,19 +30,12 @@ public class SystemUser {
 	private String firstName;
 	@NotBlank(groups=BuyerGroup.class)
 	private String lastName;
-	@NotBlank(groups=BuyerGroup.class)
 	private String socialId;
-	@NotBlank(groups=BuyerGroup.class)
 	private String address;
-	@NotBlank(groups=BuyerGroup.class)
 	private String city;
-	@NotBlank(groups=BuyerGroup.class)
 	private String state;
-	@NotBlank(groups=BuyerGroup.class)
 	private String postalCode;
-	@NotBlank(groups=BuyerGroup.class)
 	private String phone;
-	@NotBlank(groups=BuyerGroup.class)
 	private String country;
 	private String password;
 	

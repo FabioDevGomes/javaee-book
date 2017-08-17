@@ -23,6 +23,7 @@ public class ShoppingCartBean {
 		Book book = bookDao.findById(id);
 		ShoppingItem item = new ShoppingItem(book);
 		shoppingCart.add(item);
+		System.out.println("Hash1 = "+item.hashCode());
 		return "/site/carrinho?faces-redirect=true";
 	}
 
@@ -30,6 +31,7 @@ public class ShoppingCartBean {
 		Book book = bookDao.findById(id);
 		ShoppingItem item = new ShoppingItem(book);
 		shoppingCart.remove(item);
+		System.out.println("Hash2 = "+item.hashCode());
 		return "/site/carrinho?faces-redirect=true";
 	}
 
