@@ -14,9 +14,11 @@
 		</ui:define>
      
 	     <ui:define name="body">
+	     		<c:if test="#{not empty currentSystemUser.user.email}">
 	     			<h:outputFormat value="#{msg.usuario_bemVindo}">
 	     				<f:param value="#{currentSystemUser.user.email}"/>
 	     			</h:outputFormat>
+	     		</c:if>
 				<h:outputStylesheet library="css" name="guia-do-programador-style.css"  />
 				<h:messages />
 				<h:outputText value="#{param['msg']}" />
